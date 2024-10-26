@@ -1,0 +1,35 @@
+{% extends 'admin/home.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{#    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">#}
+    <title>User Card View</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            {% for user in data %}
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="{{ user.photo }}" width="200ox" height="200px" class="card-img-top" alt="{{ user.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ user.name }}</h5>
+                            <p class="card-text">Place: {{ user.place }}</p>
+                            <p class="card-text">Posts: {{ user.posts }}</p>
+                            <p class="card-text">Email: {{ user.email }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+{% endblock %}

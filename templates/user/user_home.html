@@ -1,0 +1,489 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <title>Social Media Layout</title>#}
+{#    <!-- Include Font Awesome for the like icon -->#}
+{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">#}
+{#    <style>#}
+{#        * {#}
+{#            margin: 0;#}
+{#            padding: 0;#}
+{#            box-sizing: border-box;#}
+{#        }#}
+{##}
+{#        body {#}
+{#            font-family: Arial, sans-serif;#}
+{#            background-color: #f4f4f4;#}
+{#        }#}
+{##}
+{#        /* Navigation Bar */#}
+{#        .navbar {#}
+{#            background-color: #333;#}
+{#            color: white;#}
+{#            padding: 1rem;#}
+{#            display: flex;#}
+{#            justify-content: space-between;#}
+{#            align-items: center;#}
+{#        }#}
+{##}
+{#        .navbar ul {#}
+{#            list-style-type: none;#}
+{#            display: flex;#}
+{#        }#}
+{##}
+{#        .navbar ul li {#}
+{#            margin: 0 15px;#}
+{#        }#}
+{##}
+{#        .navbar ul li a {#}
+{#            color: white;#}
+{#            text-decoration: none;#}
+{#            font-size: 1rem;#}
+{#        }#}
+{##}
+{#        .navbar ul li a:hover {#}
+{#            text-decoration: underline;#}
+{#        }#}
+{##}
+{#        /* Post Section */#}
+{#        .post-container {#}
+{#            display: grid;#}
+{#            grid-template-columns: repeat(3, 1fr);#}
+{#            gap: 20px;#}
+{#            padding: 2rem;#}
+{#            margin-top: 1rem;#}
+{#        }#}
+{##}
+{#        .post-card {#}
+{#            background-color: white;#}
+{#            padding: 1rem;#}
+{#            border-radius: 8px;#}
+{#            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);#}
+{#        }#}
+{##}
+{#        .post-card img {#}
+{#            width: 100%;#}
+{#            height: 200px;#}
+{#            object-fit: cover;#}
+{#            border-radius: 8px;#}
+{#        }#}
+{##}
+{#        .post-card h3 {#}
+{#            margin: 10px 0;#}
+{#            font-size: 1.2rem;#}
+{#        }#}
+{##}
+{#        .post-card p {#}
+{#            font-size: 1rem;#}
+{#            color: #555;#}
+{#        }#}
+{##}
+{#        /* Buttons and Counters */#}
+{#        .btn-container {#}
+{#            display: flex;#}
+{#            justify-content: space-between;#}
+{#            align-items: center;#}
+{#            margin-top: 10px;#}
+{#        }#}
+{##}
+{#        .btn-container button {#}
+{#            background-color: #007bff;#}
+{#            color: white;#}
+{#            border: none;#}
+{#            padding: 10px 20px;#}
+{#            border-radius: 5px;#}
+{#            cursor: pointer;#}
+{#            font-size: 0.9rem;#}
+{#        }#}
+{##}
+{#        .btn-container button:hover {#}
+{#            background-color: #0056b3;#}
+{#        }#}
+{##}
+{#        .counter {#}
+{#            display: flex;#}
+{#            align-items: center;#}
+{#        }#}
+{##}
+{#        .counter span {#}
+{#            font-size: 0.9rem;#}
+{#            color: #333;#}
+{#            margin-left: 8px;#}
+{#        }#}
+{##}
+{#        /* Like Button Style */#}
+{#        .like-btn {#}
+{#            background-color: transparent;#}
+{#            border: none;#}
+{#            font-size: 1.2rem;#}
+{#            color: #007bff;#}
+{#            cursor: pointer;#}
+{#        }#}
+{##}
+{#        .like-btn:hover {#}
+{#            color: #0056b3;#}
+{#        }#}
+{##}
+{#        /* Footer */#}
+{#        footer {#}
+{#            background-color: #333;#}
+{#            color: white;#}
+{#            text-align: center;#}
+{#            padding: 1rem 0;#}
+{#            margin-top: 2rem;#}
+{#        }#}
+{##}
+{#        footer p {#}
+{#            font-size: 1rem;#}
+{#        }#}
+{##}
+{#        /* Media Queries for responsiveness */#}
+{#        @media (max-width: 900px) {#}
+{#            .post-container {#}
+{#                grid-template-columns: repeat(2, 1fr);#}
+{#            }#}
+{#        }#}
+{##}
+{#        @media (max-width: 600px) {#}
+{#            .post-container {#}
+{#                grid-template-columns: 1fr;#}
+{#            }#}
+{#        }#}
+{#    </style>#}
+{#</head>#}
+{#<body>#}
+{##}
+{#    <!-- Navigation Bar -->#}
+{#    <div class="navbar">#}
+{#        <h1>SnapSter</h1>#}
+{#        <ul>#}
+{#            <li><a href="/add_post">Post</a></li>#}
+{#            <li><a href="/user_send_feedback">Feedback</a></li>#}
+{#            <li><a href="/user_view_complaint">Complaints</a></li>#}
+{#            <li><a href="/logout">Logout</a></li>#}
+{#        </ul>#}
+{#    </div>#}
+{##}
+{#    <!-- Post Grid -->#}
+{#    <div class="post-container">#}
+{#        {% for i in data %}#}
+{#        <div class="post-card">#}
+{#            <img src="{{ i.type }}" alt="Post Image">#}
+{#            <h3>{{ i.USER.name }}</h3>#}
+{#            <p>{{ i.title }}</p>#}
+{#            <div class="btn-container">#}
+{#                <div class="counter">#}
+{#                    <button class="like-btn"> {% if i.ml %}<i class="fa-solid fa-heart"></i>{% else %}<i class="fas fa-heart"></i>{% endif %}</button>#}
+{#                    <span>{{ i.lc }}</span>#}
+{#                </div>#}
+{#                <div class="counter">#}
+{#                    <button>Comment</button>#}
+{#                    <a href="/send_comment/{{ i.id }}" class="btn btn-info">Comment</a>#}
+{#                    <span>{{  i.co }}</span>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        {% endfor %}#}
+{##}
+{##}
+{##}
+{#        <!-- Add more post-cards here as needed -->#}
+{##}
+{#    </div>#}
+{##}
+{#    <!-- Footer -->#}
+{#    <footer>#}
+{#        <p>&copy; 2024 SnapSter - All rights reserved.</p>#}
+{#    </footer>#}
+{##}
+{#</body>#}
+{#</html>#}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Layout</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin: 0 15px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .navbar ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Post Section */
+        .post-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 2rem;
+            margin-top: 1rem;
+        }
+
+        .post-card {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .post-card h3 {
+            margin: 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .post-card p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Buttons and Counters */
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .btn-container button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .btn-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .counter {
+            display: flex;
+            align-items: center;
+        }
+
+        .counter span {
+            font-size: 0.9rem;
+            color: #333;
+            margin-left: 8px;
+        }
+
+        /* Like Button Style */
+        .like-btn {
+            background-color: transparent;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #007bff;
+        }
+
+        .like-btn:hover {
+            color: #0056b3;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        /* Media Queries for responsiveness */
+        @media (max-width: 900px) {
+            .post-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .post-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        .comment-btn {
+    background-color: #28a745; /* Green color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-align: center; /* Center text in the button */
+}
+
+.comment-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <h1>SnapSter</h1>
+        <ul>
+            <li><a href="/user_home">Home</a></li>
+            <li><a href="/view_user_profile">Profile</a></li>
+            <li><a href="/user_view_own_post">Post</a></li>
+            <li><a href="/user_view_all_user">User</a></li>
+            <li><a href="/user_send_feedback">Feedback</a></li>
+            <li><a href="/user_view_complaint">Complaints</a></li>
+            <li><a href="/user_view_all_user_request">Request</a></li>
+            <li><a href="/view_frieds">Friends</a></li>
+
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Post Grid -->
+{#    <div class="post-container">#}
+{#        {% for i in data %}#}
+{#        <div class="post-card">#}
+{#        {%  if i.type == 'image' %}#}
+{#            <img src="{{ i.file }}" alt="Post Image">#}
+{#        {% else %}#}
+{##}
+{#<video width="420" height="200" controls>#}
+{#  <source src="{{ i.file }}" type="video/mp4">#}
+{#  <source src="{{ i.file }}" type="video/ogg">#}
+{#  Your browser does not support the video tag.#}
+{#</video>{% endif %}#}
+{#            <h3>{{ i.USER.name }}</h3>#}
+{#            <p>{{ i.title }}</p>#}
+{#            <div class="btn-container">#}
+{#                <div class="counter">#}
+{#                        {% if i.ml %}#}
+{#                    <a href="/user_send_like/{{ i.id }}" class="like-btn"><i class="fa-solid fa-thumbs-up"></i> </a>#}
+{#                              {% else %}#}
+{#                    <a href="" class="like-btn"><i class="fa-solid fa-heart"></i> </a>#}
+{##}
+{#                                <i class="fas fa-heart"></i> <!-- Empty heart for not liked -->#}
+{#                            {% endif %}#}
+{##}
+{#                                        <a href="/user_send_like/{{ i.id }}" class="like-btn"><i class="fa-solid fa-thumbs-up"></i> </a>#}
+{##}
+{#                    <span>{{ i.lc }}</span>#}
+{##}
+{##}
+{#<!-- Like count -->#}
+{#                </div>#}
+{#                <div class="counter">#}
+{#                    <a href="/send_comment/{{ i.id }}" class="comment-btn">Add</a>#}
+{#                    <a href="/user_view_comment/{{ i.id }}" class="comment-btn">Comment</a>#}
+{#                    <span>{{  i.co }}</span> <!-- Comment count -->#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        {% endfor %}#}
+{#    </div>#}
+
+
+    <div class="post-container">
+    {% for i in data %}
+    <div class="post-card">
+        {% if i.type == 'image' %}
+            <img src="{{ i.file }}" alt="Post Image" class="img-fluid">
+        {% else %}
+            <video width="420" height="200" controls>
+                <source src="{{ i.file }}" type="video/mp4">
+                <source src="{{ i.file }}" type="video/ogg">
+                Your browser does not support the video tag.
+            </video>
+        {% endif %}
+        <h3>{{ i.USER.name }}</h3>
+        <p>{{ i.title }}</p>
+        <div class="btn-container">
+            <div class="counter">
+                {% if i.ml %}
+                    <a href="/user_send_like/{{ i.id }}" class="like-btn">
+                        <i class="fa-solid fa-thumbs-up"></i>
+                    </a>
+                {% else %}
+                    <a href="/user_send_like/{{ i.id }}" class="like-btn">
+                        <i class="fas fa-thumbs-up"></i>
+                    </a>
+                {% endif %}
+                <span>{{ i.lc }}</span> <!-- Like count -->
+            </div>
+            <div class="counter">
+                {% if i.md %}
+{#                    <a href="/user_send_dislike/{{ i.id }}" class="dislike-btn">#}
+{#                        <i class="fa-solid fa-thumbs-down"></i>#}
+{#                    </a>#}
+                {% else %}
+                    <a href="/user_send_dislike/{{ i.id }}" class="dislike-btn">
+                        <i class="fas fa-thumbs-down"></i>
+                    </a>
+                {% endif %}
+                <span>{{ i.dl }}</span> <!-- Dislike count -->
+            </div>
+            <div class="counter">
+
+                <a href="/user_view_comment/{{ i.id }}" class=""><i class="fa-regular fa-comment"></i></a>
+                <span>{{ i.co }}</span> <!-- Comment count -->
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 SnapSter - All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

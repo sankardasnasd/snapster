@@ -1,0 +1,79 @@
+
+
+{% extends 'admin/home.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Complaints</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Complaints List</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Complaint</th>
+                    <th>Date</th>
+                                        <th>Reply</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for complaint in users %}
+                <tr>
+                    <td>{{ complaint.USER.name }}</td> <!-- Assuming 'User' has 'username' field -->
+                    <td>{{ complaint.complaint }}</td>
+                    <td>{{ complaint.date }}</td>
+                                    <td>
+                                        {% if complaint.reply == 'pending' %}
+                                        <a href="/send_reply/{{ complaint.id }}" class="btn btn-info">Reply</a>
+                                        {% else %}
+
+                                        {{ complaint.reply }}
+                                        {% endif %}
+                                    </td>
+
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4">No complaints available</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
+{% endblock %}

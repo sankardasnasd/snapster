@@ -1,0 +1,227 @@
+{#{% extends 'user/user_home2.html' %}#}
+{#{% block body %}#}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <title>Posts</title>#}
+{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">#}
+{#    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">#}
+{#    <style>#}
+{#        body {#}
+{#            background-color: #f4f4f4;#}
+{#        }#}
+{##}
+{#        .post-card {#}
+{#            margin-bottom: 20px; /* Space between cards */#}
+{#            border-radius: 8px;#}
+{#            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);#}
+{#            transition: transform 0.2s; /* Animation for hover effect */#}
+{#        }#}
+{##}
+{#        .post-card:hover {#}
+{#            transform: scale(1.02); /* Scale effect on hover */#}
+{#        }#}
+{##}
+{#        .post-card img {#}
+{#            border-radius: 8px 8px 0 0; /* Rounded top corners */#}
+{#            width: 100%; /* Full width image */#}
+{#            height: auto; /* Maintain aspect ratio */#}
+{#        }#}
+{##}
+{#        .btn-container {#}
+{#            display: flex;#}
+{#            justify-content: space-between; /* Align buttons on both sides */#}
+{#            align-items: center; /* Center vertically */#}
+{#        }#}
+{##}
+{#        .like-btn, .comment-btn {#}
+{#            background-color: transparent; /* Button background */#}
+{#            border: none; /* Remove border */#}
+{#            cursor: pointer; /* Pointer cursor */#}
+{#            font-size: 1.2rem; /* Larger icon */#}
+{#        }#}
+{#    </style>#}
+{#</head>#}
+{#<body>#}
+{#    <div class="container">#}
+{#    <div>#}
+{#        <a href="/add_post" class="btn btn-info">Add New</a>#}
+{#    </div>#}
+{#        <div class="row">#}
+{#            {% for i in data %}#}
+{#            <div class="col-md-4"> <!-- Change col-md-4 to col-md-3 for 4 cards per row -->#}
+{#                <div class="card post-card">#}
+{##}
+{#{%  if i.type == 'image' %}#}
+{#            <img src="{{ i.file }}" alt="Post Image" >#}
+{#        {% else %}#}
+{##}
+{#<video width="340" height="190" controls>#}
+{#  <source src="{{ i.file }}" type="video/mp4">#}
+{#  <source src="{{ i.file }}" type="video/ogg">#}
+{#  Your browser does not support the video tag.#}
+{#</video>{% endif %}                    <div class="card-body">#}
+{#                        <p class="card-text">{{ i.title }}</p>#}
+{#        <div class="btn-container">#}
+{#            <div class="counter">#}
+{#                {% if i.ml %}#}
+{#                    <a href="/user_send_like/{{ i.id }}" class="like-btn">#}
+{#                        <i class="fa-solid fa-thumbs-up"></i>#}
+{#                    </a>#}
+{#                {% else %}#}
+{#                    <a href="/own_user_send_like/{{ i.id }}" class="like-btn">#}
+{#                        <i class="fas fa-thumbs-up"></i>#}
+{#                    </a>#}
+{#                {% endif %}#}
+{#                <span>{{ i.lc }}</span> <!-- Like count -->#}
+{#            </div>#}
+{#            <div class="counter">#}
+{#                {% if i.md %}#}
+{#                    <a href="/user_send_dislike/{{ i.id }}" class="dislike-btn">#}
+{#                        <i class="fa-solid fa-thumbs-down"></i>#}
+{#                    </a>#}
+{#                {% else %}#}
+{#                    <a href="/user_owb_send_dislike/{{ i.id }}" class="dislike-btn">#}
+{#                        <i class="fas fa-thumbs-down"></i>#}
+{#                    </a>#}
+{#                {% endif %}#}
+{#                <span>{{ i.dl }}</span> <!-- Dislike count -->#}
+{#            </div>#}
+{#            <div class="counter">#}
+{##}
+{#                <a href="/user_view_comment/{{ i.id }}" class=""><i class="fa-regular fa-comment"></i></a>#}
+{#                <span>{{ i.cc }}</span> <!-- Comment count -->#}
+{#            </div>#}
+{#        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>#}
+{#    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>#}
+{#    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>#}
+{#</body>#}
+{#</html>#}
+{#{% endblock %}#}
+
+
+{% extends 'user/user_home2.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+
+        .post-card {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .post-card:hover {
+            transform: scale(1.02);
+        }
+
+        .post-card img {
+            border-radius: 8px 8px 0 0;
+            width: 100%;
+            height: 200px; /* Fixed height */
+            object-fit: cover; /* Ensures the image maintains aspect ratio while fitting the area */
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .like-btn, .comment-btn {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        video {
+            width: 100%;
+            height: 200px; /* Fixed height for video to match image */
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <div>
+        <a href="/add_post" class="btn btn-info">Add New</a>
+    </div>
+        <div class="row">
+            {% for i in data %}
+            <div class="col-md-4"> <!-- Adjust the column size as needed -->
+                <div class="card post-card">
+
+                    {% if i.type == 'image' %}
+                        <img src="{{ i.file }}" alt="Post Image">
+                    {% else %}
+                        <video controls>
+                            <source src="{{ i.file }}" type="video/mp4">
+                            <source src="{{ i.file }}" type="video/ogg">
+                            Your browser does not support the video tag.
+                        </video>
+                    {% endif %}
+                    <div class="card-body">
+                        <p class="card-text">{{ i.title }}</p>
+                        <div class="btn-container">
+                            <div class="counter">
+                                {% if i.ml %}
+                                    <a href="/user_send_like/{{ i.id }}" class="like-btn">
+                                        <i class="fa-solid fa-thumbs-up"></i>
+                                    </a>
+                                {% else %}
+                                    <a href="/own_user_send_like/{{ i.id }}" class="like-btn">
+                                        <i class="fas fa-thumbs-up"></i>
+                                    </a>
+                                {% endif %}
+                                <span>{{ i.lc }}</span> <!-- Like count -->
+                            </div>
+                            <div class="counter">
+                                {% if i.md %}
+                                    <!-- Dislike button logic -->
+                                {% else %}
+                                    <a href="/user_owb_send_dislike/{{ i.id }}" class="dislike-btn">
+                                        <i class="fas fa-thumbs-down"></i>
+                                    </a>
+                                {% endif %}
+                                <span>{{ i.dl }}</span> <!-- Dislike count -->
+                            </div>
+                            <div class="counter">
+                                <a href="/user_view_comment/{{ i.id }}"><i class="fa-regular fa-comment"></i></a>
+                                <span>{{ i.cc }}</span> <!-- Comment count -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,86 @@
+
+{% extends 'user/user_home2.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Complaint</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .content-container {
+            margin-top: 50px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .media-input {
+            display: none; /* Hide the input fields initially */
+        }
+    </style>
+    <script>
+        function toggleMediaInput() {
+            var mediaType = document.getElementById("media-type").value;
+            var imageInput = document.getElementById("image-input");
+            var videoInput = document.getElementById("video-input");
+
+            if (mediaType === "image") {
+                imageInput.style.display = "block";
+                videoInput.style.display = "none";
+            } else if (mediaType === "video") {
+                imageInput.style.display = "none";
+                videoInput.style.display = "block";
+            } else {
+                imageInput.style.display = "none";
+                videoInput.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+<div>
+    <a href="/user_view_own_post">View Post</a>
+</div>
+    <div class="container content-container">
+        <h2 class="text-center">Submit Post</h2>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="type">Type of Post:</label>
+                <select class="form-control" id="media-type" name="type" onchange="toggleMediaInput()" required>
+                    <option value="" disabled selected>Select type</option>
+                    <option value="image">Image</option>
+                    <option value="video">Video</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" class="form-control" maxlength="300" required>
+            </div>
+
+            <!-- Image Upload Input (hidden initially) -->
+            <div class="form-group media-input" id="image-input">
+                <label for="image">Upload Image:</label>
+                <input type="file" id="image" name="image" class="form-control" accept="image/*">
+            </div>
+
+            <!-- Video Upload Input (hidden initially) -->
+            <div class="form-group media-input" id="video-input">
+                <label for="video">Upload Video:</label>
+                <input type="file" id="video" name="video" class="form-control" accept="video/*">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block" name="submit">Add</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+{% endblock %}
